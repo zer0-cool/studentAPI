@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xunit.Ioc.Ninject</name>
+    </assembly>
+    <members>
+        <member name="T:Xunit.Ioc.Ninject.NinjectDependencyResolver">
+            <summary>
+            Implements <see cref="T:Xunit.Ioc.IDependencyResolver"/> and wraps an Ninject <see cref="T:Ninject.IKernel"/>.
+            </summary>
+            <remarks>
+            Typically you'd use this to wrap your <see cref="T:Ninject.IKernel"/> instance and return it
+            from your <see cref="T:Xunit.Ioc.IDependencyResolverBootstrapper"/> class.
+            </remarks>
+        </member>
+        <member name="F:Xunit.Ioc.Ninject.NinjectDependencyResolver.TestLifetimeScopeTag">
+            <summary>
+            The tag used on the Ninject named scope that test classes represent.
+            </summary>
+            <remarks>
+            You should consider using the 
+            <see cref="M:Xunit.Ioc.Ninject.RegistrationExtensions.InstancePerTest``1(Ninject.Syntax.IBindingInSyntax{``0})"/>
+            method instead of this tag directly.
+            </remarks>
+        </member>
+        <member name="M:Xunit.Ioc.Ninject.NinjectDependencyResolver.#ctor(Ninject.IKernel)">
+            <summary>
+            Creates an <see cref="T:Xunit.Ioc.Ninject.NinjectDependencyResolver"/>
+            </summary>
+            <param name="kernel">The <see cref="T:Ninject.IKernel"/> to wrap</param>
+        </member>
+        <member name="M:Xunit.Ioc.Ninject.NinjectDependencyResolver.CreateScope">
+            <inheritdoc />
+        </member>
+        <member name="M:Xunit.Ioc.Ninject.NinjectDependencyResolver.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Xunit.Ioc.Ninject.NinjectDependencyResolver.GetType(System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xunit.Ioc.Ninject.NinjectTestsModule">
+            <summary>
+            This module allows you to easily register all your test classes within the kernel
+            </summary>
+            <remarks>
+            It searches for all test classes with the <see cref="T:Xunit.RunWithAttribute"/> set to use
+            the <see cref="T:Xunit.Ioc.IocTestClassCommand"/> and automatically adds them to the kernel.
+            </remarks>
+        </member>
+        <member name="M:Xunit.Ioc.Ninject.NinjectTestsModule.#ctor(System.Reflection.Assembly)">
+            <param name="assembly">The assembly to search for test classes</param>
+        </member>
+        <member name="M:Xunit.Ioc.Ninject.NinjectTestsModule.#ctor(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <param name="assemblies">The assemblies to search for test classes</param>
+        </member>
+        <member name="M:Xunit.Ioc.Ninject.NinjectTestsModule.Load">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Ioc.Ninject.RegistrationExtensions">
+            <summary>
+            Some utility extensions for Ninject component registration
+            </summary>
+        </member>
+        <member name="M:Xunit.Ioc.Ninject.RegistrationExtensions.InstancePerTest``1(Ninject.Syntax.IBindingInSyntax{``0})">
+            <summary>
+            Registers a component so all dependant components will resolve the same shared instance within the test
+            lifetime scope.
+            </summary>
+        </member>
+    </members>
+</doc>
